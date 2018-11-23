@@ -7,6 +7,7 @@ export default function () {
   const navLiNodes = document.querySelectorAll('.nav li');
   const arrowNode = document.querySelector('.arrow');
 
+
 //缓存小箭头一半的宽度
   const arrowHalfWidth = arrowNode.offsetWidth / 2;
 
@@ -31,4 +32,9 @@ export default function () {
 
 //初始化让小箭头来到第一个li下面
   arrowNode.style.left = navLiNodes[0].getBoundingClientRect().left + navLiNodes[0].offsetWidth / 2 - arrowHalfWidth + 'px';
+
+
+
+
+
 }
