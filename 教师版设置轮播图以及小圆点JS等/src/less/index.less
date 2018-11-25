@@ -1,0 +1,224 @@
+@import 'reset';
+
+.common-title{
+  color:#009ee0;
+  font-size:80px;
+  line-height:0.8;
+  font-weight:bold;
+  letter-spacing:-5px;
+}
+
+#wrap{
+  position: relative;
+  height: 100%;
+  #header{
+    position: relative;
+    .header-main{
+      width: 1100px;
+      height: 80px;
+      margin: 0 auto;
+      //logo区域
+      .logo{
+        float: left;
+        margin-top: 15px;
+      }
+      //导航区域
+      .nav{
+        float: right;
+        margin-top: 50px;
+        li{
+          position: relative;
+          float: left;
+          margin-left: 40px;
+          color: #009EE0;
+          &:hover{
+            .down{
+              width: 100%;
+            }
+          }
+          &.active{
+            .down{
+              width: 100%;
+            }
+          }
+          .down{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            overflow: hidden;
+            transition: width 1s;
+            color: #000;
+          }
+        }
+      }
+      //小箭头区域
+      .arrow{
+        position: absolute;
+        left: 50%;
+        bottom: -11px;
+        z-index: 5;
+        width: 21px;
+        height: 11px;
+        background-image: url('../images/arrow.png');
+        background-repeat: no-repeat;
+        transition: left 1s;
+      }
+    }
+  }
+  #content{
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: pink;
+    overflow: hidden;
+    >ul{
+      position: absolute;
+      //解决第一次没有过渡效果问题
+      top: 0;
+      width: 100%;
+      height: 500%;
+      transition: top 1s;
+      will-change: top;
+      >li{
+        position: relative;
+        width: 100%;
+        height: 20%;
+        /*display: flex;
+        justify-content: center;
+        align-items: center;*/
+        >section{
+          /*position: absolute;
+          top: 50%;
+          left: 50%;
+          margin: -260px 0 0 -550px;*/
+          /*position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          margin: auto;*/
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 1100px;
+          height: 520px;
+          &.home{
+            position: relative;
+            .home-carousel{
+              position: relative;
+              width: 100%;
+              height: 100%;
+              transform-style: preserve-3d;
+              perspective: 1000px;
+              li{
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                line-height: 520px;
+                color: #fff;
+                visibility: hidden;
+                &.show{
+                  visibility: visible;
+                }
+                &.leftHide{
+                  visibility: hidden;
+                  animation: leftHide 2s linear;
+                }
+                &.rightShow{
+                  visibility: visible;
+                  animation: rightShow 2s linear;
+                }
+                &.leftShow{
+                  visibility: visible;
+                  animation: leftShow 2s linear;
+                }
+                &.rightHide{
+                  visibility: hidden;
+                  animation: rightHide 2s linear;
+                }
+                &:nth-child(1){
+                  background:#dc6c5f;
+                }
+                &:nth-child(2){
+                  background:#95dc84;
+                }
+                &:nth-child(3){
+                  background:#64b9d2;
+                }
+                &:nth-child(4){
+                  background:#000000;
+                }
+              }
+            }
+            .home-points{
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%);
+              li{
+                float: left;
+                width: 20px;
+                height: 20px;
+                background-color: rgba(255,255,255,0.5);
+                margin: 2px;
+                box-shadow: 0 0 4px rgba(25,25,25,0.8);
+                border-radius: 50%;
+                &.active{
+                  background-color: rgba(255,255,255,1);
+                }
+              }
+            }
+             }
+        }
+      }
+    }
+  }
+}
+/*
+  隐藏元素方式：
+    1. display: none
+    2. overflow: hidden  width  height
+    3. opacity: 0
+    4. visibility: hidden
+    5. transform: scale(0)
+    6. position left -10000px
+ */
+
+//第一屏的动画
+/*
+  点击右边小圆点：
+    左边：向左位移，旋转-30deg，从前面到后面，从显示到隐藏
+    右边：向右位移，旋转30deg，从后面到前面，从隐藏到显示
+ */
+
+@keyframes leftHide {
+   0%{visibility: visible;transform: translateZ(0)}
+   50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+   100%{visibility: hidden;transform: translateZ(-200px);}
+ }
+
+@keyframes rightShow {
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+  100%{visibility: visible;transform: translateZ(0)}
+}
+
+@keyframes leftShow {
+  0%{visibility: hidden;transform: translateZ(-200px);}
+  50%{transform: translateX(-40%) rotateY(30deg) scale(.8)}
+  100%{visibility: visible;transform: translateZ(0)}
+
+}
+
+@keyframes rightHide {
+  0%{visibility: visible;transform: translateZ(0)}
+  50%{transform: translateX(40%) rotateY(-30deg) scale(.8)}
+  100%{visibility: hidden;transform: translateZ(-200px);}
+}

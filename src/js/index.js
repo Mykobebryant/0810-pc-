@@ -85,4 +85,3 @@ window.onresize = function () {
   ulList.style.top = - nowIndex * contentHeight + 'px'
  };
 
-
